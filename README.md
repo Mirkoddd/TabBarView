@@ -97,8 +97,7 @@ Example using a simple pager adapter
 
 ####License
 
-<H2>License</H2>
-	
+
  	 Copyright 2014 Mirko Dimartino
  	
  	 Licensed under the Apache License, Version 2.0 (the "License");
