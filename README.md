@@ -3,4 +3,4 @@ TabBarView
 
 An Android Library to help you create actionbar tabs like "Capitaine train" app by Cyril Mottier
 
-![alt tag](https://github.com/Mirkoddd/TabBarView/blob/master/extras/icon.png)
+![alt tag](https://raw.github.com/Mirkoddd/TabBarView/tree/master/extras/icon.png)
