@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
@@ -153,8 +154,13 @@ public class TabBarView extends LinearLayout {
         mTabCount = mViewPager.getAdapter().getCount();
 
         for (int i = 0; i < mTabCount; i++) {
-            String title = mViewPager.getAdapter().getPageTitle(i).toString();
-            int iconResId = ((IconTabProvider)mViewPager.getAdapter()).getPageIconResId(i);
+            PagerAdapter pagerAdapter = mViewPager.getAdapter();
+            CharSequence title = pagerAdapter.getPageTitle(i);
+
+            int iconResId = 0;
+            if(pagerAdapter instanceof IconTabProvider) {
+                iconResId = ((IconTabProvider)pagerAdapter).getPageIconResId(i);
+            }
 
             if (getResources().getConfiguration().orientation == 1) {
                 addTabViewPortrait(i, title, iconResId);
@@ -177,7 +183,7 @@ public class TabBarView extends LinearLayout {
         });
     }
 
-    private void addTabViewLandscape(final int i, String title, @DrawableRes int pageIconResId) {
+    private void addTabViewLandscape(final int i, CharSequence title, @DrawableRes int pageIconResId) {
         TabView tab = new TabView(getContext());
         tab.setText(title, pageIconResId);
         tab.setOnClickListener(new OnClickListener() {
@@ -191,7 +197,7 @@ public class TabBarView extends LinearLayout {
     }
 
 
-    private void addTabViewPortrait(final int i, String title, @DrawableRes int pageIconResId) {
+    private void addTabViewPortrait(final int i, CharSequence title, @DrawableRes int pageIconResId) {
         TabView tab = new TabView(getContext());
         tab.setIcon(pageIconResId);
         tab.setOnClickListener(new OnClickListener() {
@@ -200,7 +206,7 @@ public class TabBarView extends LinearLayout {
                 mViewPager.setCurrentItem(i);
             }
         });
-        CheatSheet.setup(tab, title);
+        if(title != null) CheatSheet.setup(tab, title);
 
         this.addView(tab);
     }
