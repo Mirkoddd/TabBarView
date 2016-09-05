@@ -181,20 +181,6 @@ public class TabBarView extends LinearLayout {
 				
 			}
 		}
-		
-		getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-
-			@SuppressLint("NewApi")
-			@Override
-			public void onGlobalLayout() {
-				
-				getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-				mSelectedTab = pager.getCurrentItem();
-				
-			}
-		});
-
 	}
 
 	private void addTabViewL(final int i, String string, int pageIconResId) {
